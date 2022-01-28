@@ -39,12 +39,14 @@ def predict():
 
     #predictions
     result = exported_pipeline.predict(data_df)
-
+    print('madhu')
+    print(str(result[0]))
     #send back to browser
-    output = {'results': int(result[0])}
+    # output = {'results': int(result[0])}
 
     #return data
-    return jsonify(results=output)
+    # return jsonify(results=output)
+    return str(result[0])
 
 
 if __name__ == "__main__":
