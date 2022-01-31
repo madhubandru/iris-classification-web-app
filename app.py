@@ -40,9 +40,16 @@ def predict():
     #predictions
     result = exported_pipeline.predict(data_df)
     
-    #send back to browser
-    output = {'results': int(result[0])}
+    #Load target encoder pickle file
+    with open('target_encoder.pkl', 'rb') as f:
+        target_encoder = pickle.load(f)
 
+    #decode the output
+    result = target_encoder.inverse_transform(result)
+    
+    #send back to browser
+    output = {'results': result[0]}
+    
     #return data
     return jsonify(results=output)
     # return str(result[0])
